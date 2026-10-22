@@ -1,130 +1,248 @@
-**Customer Analysis Project for Retail** 🖥️
+# 🛍️ Customer Analysis Project for Retail
 
-Conducted a retail customer analysis project using SQL, Python, and Power BI. Cleaned, transformed, and prepared customer shopping data to ensure accuracy and consistency. The project aims to explore purchasing behaviour, identify sales trends, and uncover actionable insights to support data-driven business decisions.
+**Exploring customer shopping behaviour with Python, SQL, PostgreSQL, and Power BI.**
 
-**What this project is about**
-I wanted to take a messy-ish customer shopping dataset and walk it through the full analytics process, the way it would happen on a real job: clean it in Python, load it into PostgreSQL, answer business questions with SQL, and then put the results into a Power BI dashboard that anyone can click around in.
+## 📌 About the Project
 
-**Questions I tried to answer**
-1. How much revenue do male and female customers bring in?
-2. Do subscribers actually spend more than non-subscribers?
-3. Which products get the best reviews, and which ones are discounted the most?
-4. Does the shipping type change how much people spend?
-5. How many customers are new, returning, or loyal?
-6. Which age groups bring in the most revenue?
-7. What are the top 3 products in each category?
+I wanted to take a retail shopping dataset and see what I could learn from it. Who spends the most? Do customers with subscriptions actually spend more? Which products get the best reviews, and where do discounts come into play?
 
-The dataset is customer_trend_behavior.csv: 3,900 records and 18 columns, including age, gender, item purchased, category, purchase amount, location, season, review rating, subscription status, shipping type, discount applied, previous purchases, and purchase frequency.
+To answer these questions, I worked with a dataset of 3,900 customer records and took it through the data analysis process. I cleaned and prepared the data using Python, moved it into PostgreSQL for SQL analysis, and built a Power BI dashboard to make the findings easier to explore.
 
-**Tools used**
--Python 
-(pandas, SQLAlchemy) in Jupyter Notebook
--PostgreSQL
--Power BI Desktop
+The idea was simple: go beyond the numbers, look for patterns in how people shop, and see what those patterns could mean for a retail business.
 
+## 🎯 What I Wanted to Find Out
 
-**How it went** 🔌
+I came up with a set of business questions to guide the analysis:
 
-**1. Cleaning in Python (Customer_retail_trend.ipynb)**
--Checked the data with head(), info(), describe() and a null count
+- Do male and female customers contribute different amounts of revenue?
+- Do subscribers spend more than customers without subscriptions?
+- Which products receive the best reviews?
+- Which products are purchased with discounts most often?
+- Does shipping type make a difference to how much customers spend?
+- How many customers are new, returning, or loyal?
+- What are the three most purchased products in each category?
+- Are repeat buyers more likely to subscribe?
+- Which age groups bring in the most revenue?
+- Which product categories perform best in terms of revenue?
 
--Created an age_group column by splitting customers into four equal-sized groups (Young Adult, Adult, Middle-aged, Senior)
+These questions helped me focus on the parts of the data that could be useful for understanding customer behaviour and retail performance.
 
--Created purchase_frequency_days by turning text like "Weekly" or "Quarterly" into a number of days
+## 📂 About the Dataset
 
--Noticed that discount_applied and promo_code_used matched on every single row, so I dropped promo_code_used
+The dataset, `customer_trend_behavior.csv`, contains **3,900 records and 18 columns** covering customer demographics, purchases, and shopping preferences.
 
--Loaded the cleaned data into a PostgreSQL table called customer
+Some of the information included:
 
+- Customer age and gender
+- Products purchased and product categories
+- Purchase amounts and customer locations
+- Seasons and product review ratings
+- Subscription status
+- Shipping types
+- Discount and promo code usage
+- Previous purchases
+- Purchase frequency
 
-**2. Analysis in SQL (Customer_Behaviour.sql)**
-Ten queries, from simple to more involved:
+## 🛠️ Tools I Used
 
-**Question**
-1.	Revenue by gender (GROUP BY, SUM)
+| Tool | What I Used It For |
+|---|---|
+| Python | Cleaning and preparing the data |
+| Pandas | Exploring and transforming the dataset |
+| SQLAlchemy | Connecting Python to PostgreSQL |
+| PostgreSQL | Storing the prepared data and running queries |
+| SQL | Answering business questions and analysing customer behaviour |
+| Power BI | Building an interactive dashboard |
+| Jupyter Notebook | Working through and documenting the analysis |
 
-2.	Discount users who spent above average	
+## ⚙️ How I Approached the Project
 
-3.	Highest-rated products (AVG, ROUND)
+### 1. Cleaning Things Up with Python
 
-4.	Standard vs Express shipping spend (Filtering, AVG)
+I started in Jupyter Notebook with Pandas, where I explored the dataset to understand its structure, check for missing values, and get a feel for the information I was working with.
 
-5.	Subscribers vs non-subscribers (Multiple aggregates)
+A few things I worked on:
 
-6.	Products with the highest discount rate (CASE WHEN)
-7.	New, Returning and Loyal segments (CTE, CASE WHEN)
-8.	Top 3 products per category (CTE, ROW_NUMBER)
-9.	Are repeat buyers more likely to subscribe?	(Filtering, GROUP BY)
-10. Revenue by age group
+- Used `head()`, `info()`, `describe()`, and null-value checks to inspect the data.
+- Created an `age_group` column to organise customers into four groups: Young Adult, Adult, Middle-aged, and Senior.
+- Converted purchase-frequency labels such as Weekly and Quarterly into numerical day values.
+- Compared `discount_applied` with `promo_code_used` to check whether they contained duplicate information.
+- Dropped `promo_code_used` after confirming that it matched `discount_applied` across all records.
+- Loaded the cleaned dataset into PostgreSQL using SQLAlchemy.
 
+This stage gave me a cleaner dataset to work with and made the next steps much easier.
 
-**3. Dashboard in Power BI (Customer_Behaviour_Dashboard.pbix)** 🗜️📟
+**File:** `Customer_retail_trend.ipynb`
 
-One page with three KPI cards (number of customers, average review rating, average purchase amount), a donut chart for subscription status, revenue and customer count by category, and customer count and revenue by season. There are slicers for subscription status, gender, category and shipping type so you can filter everything on the fly.
+### 2. Asking Questions with SQL
 
+Once the data was in PostgreSQL, I moved on to the questions I wanted to answer. I wrote ten SQL queries covering different aspects of customer spending, product performance, and purchasing habits.
 
-**What I found**
-These numbers come straight from the data (about $233K in total revenue):
+| # | What I Analysed | SQL Concepts Used |
+|---|---|---|
+| 1 | Revenue generated by gender | `GROUP BY`, `SUM()` |
+| 2 | Customers who used discounts but spent above average | Subqueries, `AVG()` |
+| 3 | Products with the highest average ratings | `AVG()`, `ROUND()`, `ORDER BY` |
+| 4 | Average spending for Standard and Express shipping | Filtering, aggregation |
+| 5 | Spending and revenue from subscribers vs. non-subscribers | `COUNT()`, `AVG()`, `SUM()` |
+| 6 | Products with the highest discount rates | `CASE WHEN`, aggregation |
+| 7 | New, Returning, and Loyal customer segments | CTEs, conditional logic |
+| 8 | Top three products in each category | CTEs, `ROW_NUMBER()` |
+| 9 | Subscription status among repeat buyers | Filtering, `GROUP BY` |
+| 10 | Revenue generated by different age groups | `CASE WHEN`, `SUM()` |
 
-**Gender:** men made up about $157.9K of revenue and women about $75.2K, so men account for roughly two-thirds.
+I used a mix of aggregations, subqueries, common table expressions (CTEs), and window functions to turn the business questions into queries that could be answered with the data.
 
-**Subscriptions:** subscribers and non-subscribers spend almost the same per purchase ($59.49 vs $59.87). Being subscribed doesn't seem to make people spend more.
+**File:** `Customer Behaviour.sql`
 
-**Shipping:** Average spend sits between about $58 and $61, regardless of the shipping type, so there's no big difference.
+### 3. Bringing the Numbers to Life with Power BI
 
-**Best-rated products:** Gloves, Sandals, Boots, Hat and Skirt, all around 3.8 to 3.9.
+After working through the data in Python and SQL, I used Power BI to build a one-page interactive dashboard.
 
-**Most discounted products:** Hat, Sneakers, Coat, Sweater and Pants, with roughly 47% to 50% of their purchases using a discount.
+The dashboard includes:
 
-**Categories:** Clothing is the biggest earner (about $104K), then Accessories, Footwear and Outerwear.
+- **KPI cards** showing the number of customers, average review rating, and average purchase amount.
+- **A subscription donut chart** showing the split between subscribers and non-subscribers.
+- **Category analysis** comparing revenue and customer counts across product categories.
+- **Seasonal analysis** showing customer counts and revenue by season.
+- **Interactive filters** for subscription status, gender, product category, and shipping type.
 
-**Age:** Revenue goes up with age. The 50+ group brings in about $88K, while under-25s bring in about $29K.
+The filters let users explore different customer groups without having to dig through the raw data themselves.
 
+**File:** `Customer Behaviour Dashboard.pbix`
 
-**What I'd suggest**
-1. Rethink the subscription perks. Right now, they don't increase spend per order.
-2. Look at the heavily discounted products and check whether they'd sell just as well at full price.
-3. Put more effort into reaching women and younger customers, since they contribute the least revenue.
-4. Give the best-rated products more visibility.
-5. Use the New, Returning, and Loyal segments to plan retention campaigns.
+## 📊 What I Found
 
+Here are some of the results that stood out to me. The dataset generated approximately **$233,000 in total revenue**.
 
+### 1. Male Customers Accounted for More Revenue
 
-**Files in this repository**
+Male customers generated around **$157,900**, while female customers generated approximately $75,200. That means male customers accounted for roughly two-thirds of the revenue in this dataset.
 
-├── customer_trend_behavior.csv          raw dataset
+This was an interesting difference to investigate further, particularly when looking at product preferences and opportunities to reach different customer groups.
 
-├── Customer_retail_trend.ipynb          cleaning and loading into PostgreSQL
+### 2. Subscriptions Didn't Mean Higher Spending
 
-├── Customer_Behaviour.sql               the 10 SQL queries
+The average purchase amounts were almost identical:
 
-├── Customer_Behaviour_Dashboard.pbix    Power BI dashboard
+- Subscribers: **$59.49**
+- Non-subscribers: **$59.87**
 
+In this dataset, subscribers actually spent slightly less per purchase on average. It made me question whether subscription benefits are necessarily translating into higher spending, at least in this sample.
+
+### 3. Shipping Type Made Little Difference
+
+Average purchase amounts ranged from around $58 to $61 across shipping types. There wasn't a major difference in how much customers spent based on their shipping preferences.
+
+### 4. Some Products Scored Better in Customer Reviews
+
+Gloves, Sandals, Boots, Hats, and Skirts were among the highest-rated products, with average ratings of approximately 3.8 to 3.9.
+
+These products could be worth exploring further when looking at customer satisfaction and product recommendations.
+
+### 5. Discounts Were Common for Certain Products
+
+Hats, Sneakers, Coats, Sweaters, and Pants had some of the highest discount rates, with roughly 47%–50% of purchases involving discounts.
+
+That raises an interesting question: are these products naturally popular, or are discounts helping drive their sales?
+
+### 6. Clothing Led Category Revenue
+
+Clothing generated approximately **$104,000**, making it the largest revenue-generating category, followed by Accessories, Footwear, and Outerwear.
+
+Understanding what drives this difference could help inform decisions around product selection, merchandising, and marketing.
+
+### 7. Older Customers Contributed More Revenue
+
+Customers aged 50 and above generated approximately **$88,000**, compared with around $29,000 from customers under 25.
+
+This doesn't automatically mean older customers are more profitable, but it does highlight an interesting pattern worth investigating alongside purchase frequency, customer count, and average spending.
+
+## 💡 What a Retail Business Could Take Away from This
+
+Looking at the findings, there are a few areas I would explore further:
+
+- **Take another look at subscription benefits.** If subscribers aren't spending more per purchase, it may be worth investigating whether the current benefits encourage repeat purchases or long-term loyalty.
+- **Understand the role of discounts.** Products with high discount rates deserve a closer look. Are discounts driving additional sales, or are customers buying these products regardless?
+- **Learn more about different customer groups.** The revenue gap between male and female customers, as well as between age groups, could guide further research into shopping preferences and marketing opportunities.
+- **Give highly rated products more attention.** Products that receive consistently good reviews could be featured more prominently, provided demand and profitability support it.
+- **Make customer segmentation useful.** Separating customers into New, Returning, and Loyal groups creates a starting point for more targeted retention campaigns.
+- **Investigate what drives spending among older customers.** Understanding their product preferences and purchasing habits could help the business make better-informed marketing decisions.
+
+These are opportunities to investigate, rather than definitive conclusions. More analysis would be needed to understand the reasons behind the patterns and determine which actions would have the greatest impact.
+
+## 📁 What's Inside the Repository?
+
+```text
+Customer-Analysis-Project-for-Retail-/
+│
+├── customer_trend_behavior.csv
+│   └── The retail customer dataset
+│
+├── Customer_retail_trend.ipynb
+│   └── Python data cleaning and transformation
+│
+├── Customer Behaviour.sql
+│   └── Ten SQL analysis queries
+│
+├── Customer Behaviour Dashboard.pbix
+│   └── Interactive Power BI dashboard
+│
 └── README.md
+    └── Project documentation
+```
 
+## 🚀 Want to Explore the Project?
 
-**Prerequisites**
-Install or configure the following tools:
-1. Python
-2. Jupyter Notebook
-3. PostgreSQL
-4. Power BI Desktop
-   
+### Prerequisites
 
-**Required Python libraries**
-**Step 1:** Install Python Dependencies
+You'll need Python 3, Jupyter Notebook, PostgreSQL, and Power BI Desktop, along with the required Python libraries.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/VictorEtire/Customer-Analysis-Project-for-Retail-.git
+cd Customer-Analysis-Project-for-Retail-
+```
+
+### 2. Install the Python Libraries
+
+```bash
 pip install pandas sqlalchemy "psycopg[binary]"
+```
 
+### 3. Run the Notebook
 
-**Step 2:** Prepare the Dataset
-Place the customer shopping dataset in an accessible location and update the file path in the notebook to match your environment.
-Run the notebook cells to inspect, clean, and transform the data.
+Open `Customer_retail_trend.ipynb` in Jupyter Notebook. Make sure the CSV file path matches your setup, then run the cells to explore, clean, and transform the dataset.
 
+### 4. Set Up PostgreSQL
 
-**Step 3:** Configure PostgreSQL
-Create a PostgreSQL database for the project and configure your database connection in the notebook using your own credentials.
-Load the prepared DataFrame into a PostgreSQL table named customer, then execute the queries in the SQL file.
+Create a PostgreSQL database and configure the connection in the notebook. Load the prepared data into a table named `customer`, then run the queries in `Customer Behaviour.sql`.
 
+Remember to keep your database credentials private and out of any publicly shared code.
 
-**Author**
-Victor Etire
+### 5. Explore the Dashboard
+
+Open `Customer Behaviour Dashboard.pbix` in Power BI Desktop. Update the data source settings if needed, refresh the data, and explore the available charts and filters.
+
+## 📈 What I Practised
+
+This project gave me an opportunity to work through a complete data analysis workflow and put several skills into practice:
+
+- Data cleaning and preprocessing
+- Exploratory data analysis
+- Feature engineering with Pandas
+- SQL querying and data aggregation
+- PostgreSQL database integration
+- Customer segmentation
+- Common table expressions and window functions
+- Power BI dashboard development
+- Data visualisation and storytelling
+- Turning analytical findings into business recommendations
+
+## 👨‍💻 About Me
+
+I'm **Victor Etire**, proficient in Data Science (SQL, R, Python, Power BI, Tableau)—flexible, honest, and hard-working professional.
+
+LinkedIn: https://www.linkedin.com/in/etire-victor-b340b3302/
+
