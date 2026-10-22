@@ -2,7 +2,7 @@
 
 **Exploring customer shopping behaviour with Python, SQL, PostgreSQL, and Power BI.**
 
-## 📌 About the Project
+## About the Project
 
 I wanted to take a retail shopping dataset and see what I could learn from it. Who spends the most? Do customers with subscriptions actually spend more? Which products get the best reviews, and where do discounts come into play?
 
@@ -17,12 +17,9 @@ I came up with a set of business questions to guide the analysis:
 - Do male and female customers contribute different amounts of revenue?
 - Do subscribers spend more than customers without subscriptions?
 - Which products receive the best reviews?
-- Which products are purchased with discounts most often?
-- Does shipping type make a difference to how much customers spend?
 - How many customers are new, returning, or loyal?
 - What are the three most purchased products in each category?
 - Are repeat buyers more likely to subscribe?
-- Which age groups bring in the most revenue?
 - Which product categories perform best in terms of revenue?
 
 These questions helped me focus on the parts of the data that could be useful for understanding customer behaviour and retail performance.
@@ -146,17 +143,6 @@ Hats, Sneakers, Coats, Sweaters, and Pants had some of the highest discount rate
 
 That raises an interesting question: are these products naturally popular, or are discounts helping drive their sales?
 
-### 6. Clothing Led Category Revenue
-
-Clothing generated approximately **$104,000**, making it the largest revenue-generating category, followed by Accessories, Footwear, and Outerwear.
-
-Understanding what drives this difference could help inform decisions around product selection, merchandising, and marketing.
-
-### 7. Older Customers Contributed More Revenue
-
-Customers aged 50 and above generated approximately **$88,000**, compared with around $29,000 from customers under 25.
-
-This doesn't automatically mean older customers are more profitable, but it does highlight an interesting pattern worth investigating alongside purchase frequency, customer count, and average spending.
 
 ## 💡 What a Retail Business Could Take Away from This
 
@@ -167,7 +153,6 @@ Looking at the findings, there are a few areas I would explore further:
 - **Learn more about different customer groups.** The revenue gap between male and female customers, as well as between age groups, could guide further research into shopping preferences and marketing opportunities.
 - **Give highly rated products more attention.** Products that receive consistently good reviews could be featured more prominently, provided demand and profitability support it.
 - **Make customer segmentation useful.** Separating customers into New, Returning, and Loyal groups creates a starting point for more targeted retention campaigns.
-- **Investigate what drives spending among older customers.** Understanding their product preferences and purchasing habits could help the business make better-informed marketing decisions.
 
 These are opportunities to investigate, rather than definitive conclusions. More analysis would be needed to understand the reasons behind the patterns and determine which actions would have the greatest impact.
 
@@ -192,7 +177,6 @@ Customer-Analysis-Project-for-Retail-/
     └── Project documentation
 ```
 
-## 🚀 Want to Explore the Project?
 
 ### Prerequisites
 
@@ -234,8 +218,6 @@ This project gave me an opportunity to work through a complete data analysis wor
 - Feature engineering with Pandas
 - SQL querying and data aggregation
 - PostgreSQL database integration
-- Customer segmentation
-- Common table expressions and window functions
 - Power BI dashboard development
 - Data visualisation and storytelling
 - Turning analytical findings into business recommendations
